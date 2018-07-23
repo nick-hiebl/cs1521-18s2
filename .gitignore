@@ -1,1 +1,11 @@
-q4
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Ignore object files
+*.o
