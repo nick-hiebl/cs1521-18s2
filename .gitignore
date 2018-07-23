@@ -9,3 +9,6 @@
 
 # Ignore object files
 *.o
+
+# Ignore default gcc binary files
+a.out
