@@ -12,3 +12,6 @@
 
 # Ignore default gcc binary files
 a.out
+
+# Unignore Makefiles
+!Makefile
