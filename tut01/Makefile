@@ -2,7 +2,7 @@ CC=gcc
 ARGS=-Wall -Werror
 
 q4: q4.c
-	$(CC) q4.c $(ARGS) -o q4
+	$(CC) q4.c -o q4
 
 q5: q5.c
 	$(CC) q5.c $(ARGS) -o q5
