@@ -13,20 +13,11 @@ void print_coord(Coord c) {
 int main() {
     Coord a, b, coords[10], *p;
 
-    a.x = 5; a.y = 6; a.z = 7;
-    p = &a;
-    b.x = 3; b.y = 3; b.z = 3;
-    {
-        print_coord(a);
-        print_coord(b);
+    for (p = &coords[0]; p <= &coords[9]; p++) {
+        p->x = 0;
+        p->y = 0;
+        p->z = 0;
+
+        print_coord(*p);
     }
-    /*A*/
-    (*p).x = 6; p->y++; p->z++;
-    b = *p;
-    {
-        print_coord(a);
-        print_coord(b);
-        printf("%u\n", *((unsigned int *) p));
-    }
-    /*B*/
 }
