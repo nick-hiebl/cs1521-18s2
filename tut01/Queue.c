@@ -11,10 +11,20 @@ void initQueue(Queue *q) {
 
 void enterQueue(Queue *q, int value) {
     // TODO
+    q->items[q->tail] = value;
+    q->tail++;
+    q->nitems++;
 }
 
 int leaveQueue(Queue *q) {
     // TODO
+    int out = q->items[q->head];
+    q->tail--;
+    for (int i = 0; i < q->tail; i++) {
+        q->items[i] = q->items[i+1];
+    }
+    q->nitems--;
+    return out;
 }
 
 int lengthQueue(Queue q) {
@@ -23,6 +33,10 @@ int lengthQueue(Queue q) {
 
 void showQueue(Queue q) {
     // TODO
+    for (int i = 0; i != q.tail; i++) {
+        printf("%d ", q.items[i]);
+    }
+    printf("\n");
 }
 
 int main(void) {
