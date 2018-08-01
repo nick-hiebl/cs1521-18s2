@@ -22,7 +22,7 @@ void print_device(unsigned char device) {
 
 int main() {
     // Initialise device
-    unsigned char device = (READING | AS_BYTES | LOCKED);
+    unsigned char device = 0x0;
 
     print_device(device);
 
