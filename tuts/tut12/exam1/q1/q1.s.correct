@@ -1,0 +1,66 @@
+# COMP1521 Practice Prac Exam #1
+# int rmOdd(int *src, int n, int*dest)
+
+    .text
+    .globl rmOdd
+
+# params: src=$a0, n=$a1, dest=$a2
+rmOdd:
+# prologue
+    addi $sp, $sp, -4
+    sw   $fp, ($sp)
+    la   $fp, ($sp)
+    addi $sp, $sp, -4
+    sw   $ra, ($sp)
+    addi $sp, $sp, -4
+    sw   $s0, ($sp)
+    addi $sp, $sp, -4
+    sw   $s1, ($sp)
+    # if you need to save more $s? registers
+    # add the code to save them here
+
+# function body
+# locals: ...
+
+    li  $v0, 0
+    li  $s0, 0
+for:
+    bge $s0, $a1, end_for
+
+    li  $t2, 4
+    mul $t2, $s0, $t2
+    add $t0, $t2, $a0
+    lw  $t1, ($t0)
+
+    li  $t2, 2
+    rem $t2, $t1, $t2
+    beqz $t2, copyElement
+    j   noCopy
+
+copyElement:
+    li  $t2, 4
+    mul $t2, $v0, $t2
+    add $t0, $a2, $t2
+    sw  $t1, ($t0)
+    addi $v0, $v0, 1
+noCopy:
+
+    addi $s0, $s0, 1
+    j   for
+end_for:
+
+
+    # add code for your rmOdd function here
+
+# epilogue
+    # if you saved more than two $s? registers
+    # add the code to restore them here
+    lw   $s1, ($sp)
+    addi $sp, $sp, 4
+    lw   $s0, ($sp)
+    addi $sp, $sp, 4
+    lw   $ra, ($sp)
+    addi $sp, $sp, 4
+    lw   $fp, ($sp)
+    addi $sp, $sp, 4
+    j    $ra

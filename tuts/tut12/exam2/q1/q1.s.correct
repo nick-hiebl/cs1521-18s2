@@ -1,0 +1,75 @@
+# COMP1521 Practice Prac Exam #1
+# int everyKth(int *src, int n, int k, int*dest)
+
+    .text
+    .globl everyKth
+
+# params: src=$a0, n=$a1, k=$a2, dest=$a3
+everyKth:
+# prologue
+    addi $sp, $sp, -4
+    sw   $fp, ($sp)
+    la   $fp, ($sp)
+    addi $sp, $sp, -4
+    sw   $ra, ($sp)
+    addi $sp, $sp, -4
+    sw   $s0, ($sp)
+    addi $sp, $sp, -4
+    sw   $s1, ($sp)
+    # if you need to save more $s? registers
+    # add the code to save them here
+
+# function body
+# locals: ...
+
+    # add code for your everyKth function here
+    li      $s0, 0 # i = 0
+    li      $s1, 0 # j = 0
+
+    li      $v0, 0
+
+for:
+    bge     $s0, $a1, end_for
+
+    # check
+    rem     $t0, $s0, $a2
+    # if
+    beqz    $t0, copy
+    # else
+    j       no_copy
+
+copy:
+    # load
+    li      $t0, 4
+    mul     $t0, $t0, $s0 # t0 = 4 * i
+    add     $t0, $t0, $a0 # t0 = src + (4 * i)
+    lw      $t1, ($t0)
+
+    # save
+    li      $t0, 4
+    mul     $t0, $t0, $s1 # t0 = 4 * j
+    add     $t0, $t0, $a3 # t0 = dest + (4 * j)
+    sw      $t1, ($t0)
+
+    addi    $s1, 1
+
+no_copy:
+
+    addi    $s0, $s0, 1
+    j       for
+end_for:
+
+    move    $v0, $s1
+
+# epilogue
+    # if you saved more than two $s? registers
+    # add the code to restore them here
+    lw   $s1, ($sp)
+    addi $sp, $sp, 4
+    lw   $s0, ($sp)
+    addi $sp, $sp, 4
+    lw   $ra, ($sp)
+    addi $sp, $sp, 4
+    lw   $fp, ($sp)
+    addi $sp, $sp, 4
+    j    $ra
